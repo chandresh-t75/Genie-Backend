@@ -52,6 +52,8 @@ import connectDB from './db/db.js';
 import userRoutes from './routes/userRoutes.js';
 import retailerRoutes from './routes/retailerRoutes.js';
 import chatRoutes from './routes/chatroutes.js';
+import b2bRoutes from './routes/b2broutes.js';
+
 import cors from 'cors';
 import http from 'http';
 import { Server } from 'socket.io';
@@ -65,11 +67,13 @@ dotenv.config({ path: './.env' });
 const app = express();
 
 // Middleware
+// console.log(process.env.CORS_ORIGIN)
 app.use(express.json());
 app.use(cors({
     origin: process.env.CORS_ORIGIN,
     credentials: true
 }));
+
 
 // Routes
 app.get('/', (req, res) => {
@@ -78,6 +82,7 @@ app.get('/', (req, res) => {
 app.use('/user', userRoutes);
 app.use('/retailer', retailerRoutes);
 app.use('/chat', chatRoutes);
+app.use('/b2b',b2bRoutes);
 
 // Create HTTP server and integrate Socket.IO
 const server = http.createServer(app);

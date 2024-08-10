@@ -9,9 +9,7 @@ export const createNewRetailer = async (req, res) => {
     try {
         const data = req.body;
         // console.log('retailer data', data);
-
-
-        const retailer = await Retailer.create({
+        const retailer =await Retailer.create({
             storeMobileNo: data.storeMobileNo, storeName: data.storeName,
             storeOwnerName: data.storeOwnerName, storeCategory: data.storeCategory,
             panCard: `${data?.panCard ? data.panCard : ""}`, homeDelivery: data.homeDelivery
@@ -40,7 +38,7 @@ export const getRetailer = async (req, res) => {
     }
 }
 
-export const editRetailerDetails = async (req, res) => {
+export const editRetailerDetails = async (req, res) => { 
     try {
         const data = req.body;
         const user = await Retailer.findByIdAndUpdate(data._id, data, { new: true });
